@@ -13,7 +13,6 @@ app
     res.sendFile(path.join(__dirname + '/views/index.html'));
 })
 .post('/', async (req, res) => {
-    console.log("da")
     sendToAlice(req, res)
 })
 .listen(PORT, () => console.log(`Listening on ${ PORT }`))

@@ -1,5 +1,5 @@
 {
-  "name": "alice_in_box",
+  "name": "alice_fitness",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,10 +11,6 @@
     "test": "node test.js",
     "nodemon": "nodemon -e js,jade,html index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/heroku/infinite-retreat-01217"
-  },
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -23,7 +19,6 @@
     "express": "^4.17.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15",
-    "sucrase": "^3.20.3"
+    "nodemon": "^2.0.15"
   }
 }

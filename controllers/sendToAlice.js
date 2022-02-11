@@ -6,41 +6,32 @@ heroku open
 heroku logs --tail
 
 */
-const replic = require('../public/replics/replic.json');
+const replics = require('../public/replics/replics.json');
 
-const { resPattern } = require("../public/responsePatterns/resPattern");
+const { standartPattern } = require("../public/responsePatterns/standartPattern");
 
 const sendToAlice = async (req, res) => {
     
     const { message_id, user_id } = req.body.session;
     const { command, original_utterance } = req.body.request;
     const { tokens, entities } = req.body.request.nlu;
+    const { state } = req.body.state;
 
     console.log(message_id);
     console.log(command);
     console.log(tokens);
-    console.log(entities);
     console.log(entities[0]);
+    console.log(state)
 
-    let first_name = "";
-
-    if(entities[0]) {
-        try {
-            first_name = entities[0].value.first_name;
-            first_name = first_name.slice(0,first_name.length/2 + 1)
-        } catch (err) {
-            console.log(err)
-        }
-        
-    }
+    let first_name = null && entities[0] && entities[0].value && entities[0].value.first_name;
+    let last_name = null && entities[0] && entities[0].value && entities[0].value.last_name;
 
     if(message_id == 0) {
-        res.send(resPattern(replic.hello))
+        res.send(standartPattern(replic[0].text))
     } else {
-        res.send(resPattern(replic.famillarity.replace("USER_NAME", first_name)))
+        res.send(standartPattern(replic[1].text, first_name))
     }
     
-
 }
 
 module.exports.sendToAlice = sendToAlice;
